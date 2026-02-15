@@ -40,7 +40,7 @@ export default function WorkshopDetailsPage() {
                 supabase.from('workshop_groups').select('*, subjects(*), tutors(*)').eq('id', workshopId).single(),
                 supabase.from('subjects').select('*').order('name'),
                 supabase.from('tutors').select('id, name').order('name'),
-                supabase.from('course_requests').select('*, students(id, name, phone)').eq('workshop_group_id', workshopId),
+                supabase.from('course_requests').select('*, students(id, name, phone, user_id)').eq('workshop_group_id', workshopId),
                 supabase.from('classes').select('*').eq('group_id', workshopId).order('scheduled_at')
             ]);
 
@@ -408,7 +408,14 @@ export default function WorkshopDetailsPage() {
                                                     {req.students?.name.charAt(0)}
                                                 </div>
                                                 <div>
-                                                    <p className="font-medium text-sm line-clamp-1">{req.students?.name}</p>
+                                                    <div className="flex items-center gap-2">
+                                                        <p className="font-medium text-sm line-clamp-1">{req.students?.name}</p>
+                                                        {req.students?.user_id ? (
+                                                            <span className="px-1.5 py-0.5 bg-green-500/10 text-green-400 border border-green-500/20 rounded text-[8px] uppercase font-black">REG</span>
+                                                        ) : (
+                                                            <span className="px-1.5 py-0.5 bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 rounded text-[8px] uppercase font-black">INV</span>
+                                                        )}
+                                                    </div>
                                                     <p className="text-[10px] text-gray-500">{req.students?.phone}</p>
                                                 </div>
                                             </div>

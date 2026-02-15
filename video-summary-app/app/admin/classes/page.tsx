@@ -31,7 +31,8 @@ interface Package {
     total_price: number;
     amount_paid: number;
     payment_status: string;
-    created_at: string;
+    workshop_group_id?: string;
+    is_registered: boolean;
     classes: ClassSession[];
 }
 
@@ -74,8 +75,8 @@ export default function ClassesManagementPage() {
             .from('course_requests')
             .select(`
                 id, student_id, subject_id, package_hours, preference, status,
-                total_price, amount_paid, payment_status, created_at,
-                student:students(id, name, phone),
+                total_price, amount_paid, payment_status, created_at, workshop_group_id,
+                student:students(id, name, phone, user_id),
                 subject:subjects(id, name),
                 classes(id, scheduled_at, duration_minutes, status, tutor_id,
                     tutor:tutors(id, name)
@@ -84,8 +85,56 @@ export default function ClassesManagementPage() {
             .in('status', ['matched', 'pending', 'completed'])
             .order('created_at', { ascending: false });
 
-        if (reqData) {
-            const mapped: Package[] = (reqData as any[]).map(r => ({
+        if (!reqData) {
+            setLoading(false);
+            return;
+        }
+
+        // Fetch classes for workshops (those linked via group_id instead of request_id)
+        const workshopGroupIds = reqData
+            .filter(r => r.workshop_group_id)
+            .map(r => r.workshop_group_id as string);
+
+        let workshopClasses: any[] = [];
+        if (workshopGroupIds.length > 0) {
+            const { data: wcData } = await supabase
+                .from('classes')
+                .select('id, scheduled_at, duration_minutes, status, tutor_id, group_id, tutor:tutors(id, name)')
+                .in('group_id', workshopGroupIds);
+            if (wcData) workshopClasses = wcData;
+        }
+
+        const mapped: Package[] = (reqData as any[]).map(r => {
+            // Get sessions linked directly to this request
+            const directClasses = (r.classes || []).map((c: any) => ({
+                id: c.id,
+                scheduled_at: c.scheduled_at,
+                duration_minutes: c.duration_minutes || 60,
+                status: c.status,
+                tutor_id: c.tutor_id,
+                tutor_name: c.tutor?.name || 'Sin asignar'
+            }));
+
+            // Get sessions linked via workshop group (if any)
+            const groupClasses = r.workshop_group_id
+                ? workshopClasses
+                    .filter(wc => wc.group_id === r.workshop_group_id)
+                    .map(wc => ({
+                        id: wc.id,
+                        scheduled_at: wc.scheduled_at,
+                        duration_minutes: wc.duration_minutes || 60,
+                        status: wc.status,
+                        tutor_id: wc.tutor_id,
+                        tutor_name: wc.tutor?.name || 'Sin asignar'
+                    }))
+                : [];
+
+            // Combine and sort
+            const allClasses = [...directClasses, ...groupClasses].sort((a, b) =>
+                new Date(a.scheduled_at).getTime() - new Date(b.scheduled_at).getTime()
+            );
+
+            return {
                 id: r.id,
                 student_id: r.student_id,
                 student_name: r.student?.name || 'Desconocido',
@@ -99,19 +148,12 @@ export default function ClassesManagementPage() {
                 amount_paid: r.amount_paid || 0,
                 payment_status: r.payment_status || 'pending',
                 created_at: r.created_at,
-                classes: (r.classes || []).map((c: any) => ({
-                    id: c.id,
-                    scheduled_at: c.scheduled_at,
-                    duration_minutes: c.duration_minutes || 60,
-                    status: c.status,
-                    tutor_id: c.tutor_id,
-                    tutor_name: c.tutor?.name || 'Sin asignar'
-                })).sort((a: ClassSession, b: ClassSession) =>
-                    new Date(a.scheduled_at).getTime() - new Date(b.scheduled_at).getTime()
-                )
-            }));
-            setPackages(mapped);
-        }
+                workshop_group_id: r.workshop_group_id,
+                is_registered: !!r.student?.user_id,
+                classes: allClasses
+            };
+        });
+        setPackages(mapped);
 
         // Load tutors
         const { data: tutorData } = await supabase
@@ -210,6 +252,23 @@ export default function ClassesManagementPage() {
             alert('Error: ' + err.message);
         } finally {
             setSaving(false);
+        }
+    };
+
+    // --- Delete entire package ---
+    const handleDeletePackage = async (pkgId: string) => {
+        if (!confirm('¿Eliminar este paquete por completo? Esto eliminará todas las sesiones vinculadas.')) return;
+
+        try {
+            // First delete classes
+            await supabase.from('classes').delete().eq('request_id', pkgId);
+            // Then delete the request
+            const { error } = await supabase.from('course_requests').delete().eq('id', pkgId);
+
+            if (error) throw error;
+            loadData();
+        } catch (err: any) {
+            alert('Error: ' + err.message);
         }
     };
 
@@ -349,6 +408,18 @@ export default function ClassesManagementPage() {
                                                     <span className="capitalize">{pkg.preference}</span>
                                                     <span className="w-1 h-1 bg-gray-600 rounded-full" />
                                                     <span className="text-blue-400 font-medium">{pkg.package_hours}h contratadas</span>
+
+                                                    {/* New Badges */}
+                                                    {pkg.workshop_group_id ? (
+                                                        <span className="px-2 py-0.5 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded text-[10px] uppercase font-bold tracking-wider">Taller</span>
+                                                    ) : (
+                                                        <span className="px-2 py-0.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded text-[10px] uppercase font-bold tracking-wider">Tutoría</span>
+                                                    )}
+                                                    {pkg.is_registered ? (
+                                                        <span className="px-2 py-0.5 bg-green-500/10 text-green-400 border border-green-500/20 rounded text-[10px] uppercase font-bold tracking-wider">Registrado</span>
+                                                    ) : (
+                                                        <span className="px-2 py-0.5 bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 rounded text-[10px] uppercase font-bold tracking-wider">Invitado</span>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -480,9 +551,9 @@ export default function ClassesManagementPage() {
                                                                 )}
                                                                 <button
                                                                     onClick={(e) => { e.stopPropagation(); handleDeleteClass(cls.id); }}
-                                                                    className="p-1.5 hover:bg-red-500/10 text-gray-500 hover:text-red-400 rounded-lg transition-colors"
+                                                                    className="p-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg transition-colors border border-red-500/20 flex items-center gap-2 text-xs font-bold"
                                                                 >
-                                                                    <Trash2 size={14} />
+                                                                    <Trash2 size={12} /> Eliminar
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -559,6 +630,12 @@ export default function ClassesManagementPage() {
                                                     <MessageCircle size={16} /> WhatsApp
                                                 </button>
                                             )}
+                                            <button
+                                                onClick={(e) => { e.stopPropagation(); handleDeletePackage(pkg.id); }}
+                                                className="flex items-center gap-2 bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-400/20 px-4 py-2 rounded-xl font-bold text-sm transition-colors ml-auto"
+                                            >
+                                                <Trash2 size={16} /> Eliminar Paquete
+                                            </button>
                                         </div>
                                     </div>
                                 )}

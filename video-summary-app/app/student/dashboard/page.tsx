@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '../../utils/supabase';
-import { BookOpen, Clock, Calendar, Plus, User, Loader2, DollarSign, Video, AlertTriangle, Target, Users } from 'lucide-react';
+import { BookOpen, Clock, Calendar, Plus, User, Loader2, DollarSign, Video, AlertTriangle, Target, Users, CheckCircle2 } from 'lucide-react';
 
 interface Student {
     id: string;
@@ -23,7 +23,10 @@ interface Request {
 interface Subject {
     id: string;
     name: string;
+    level: string;
 }
+
+const LEVEL_FILTERS = ['Todos', 'Sétimo', 'Octavo', 'Noveno', 'Bachillerato', 'Universidad'];
 
 export default function StudentDashboard() {
     const router = useRouter();
@@ -42,6 +45,7 @@ export default function StudentDashboard() {
     const [time, setTime] = useState('');
     const [preference, setPreference] = useState('grupal');
     const [submitting, setSubmitting] = useState(false);
+    const [selectedLevelFilter, setSelectedLevelFilter] = useState('Todos');
 
     useEffect(() => {
         checkSessionAndLoadData();
@@ -107,7 +111,7 @@ export default function StudentDashboard() {
     };
 
     const loadSubjects = async () => {
-        const { data } = await supabase.from('subjects').select('id, name');
+        const { data } = await supabase.from('subjects').select('id, name, level').order('name');
         if (data) setSubjects(data);
     };
 
@@ -281,15 +285,61 @@ export default function StudentDashboard() {
                     <div className="bg-[#1a1c1e] rounded-2xl border border-white/10 p-6 w-full max-w-lg shadow-2xl">
                         <h2 className="text-xl font-bold mb-4">Solicitar Clase</h2>
                         <form onSubmit={handleCreateRequest} className="space-y-4">
-                            <div>
-                                <label className="block text-sm text-gray-400 mb-2">Materia</label>
-                                <select
-                                    className="w-full bg-[#0f1113] border border-white/10 rounded-xl p-3"
-                                    value={selectedSubject} onChange={e => setSelectedSubject(e.target.value)} required
-                                >
-                                    <option value="">Selecciona materia...</option>
-                                    {subjects.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
-                                </select>
+                            <div className="space-y-6">
+                                <div className="space-y-3">
+                                    <label className="block text-sm text-gray-400 font-bold uppercase tracking-wider">¿En qué nivel estás?</label>
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                        {LEVEL_FILTERS.map(lvl => (
+                                            <button
+                                                key={lvl}
+                                                type="button"
+                                                onClick={() => {
+                                                    setSelectedLevelFilter(lvl);
+                                                    setSelectedSubject(''); // Reset subject on level change
+                                                }}
+                                                className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${selectedLevelFilter === lvl
+                                                    ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-600/20'
+                                                    : 'bg-white/5 border-white/5 text-gray-400 hover:bg-white/10 hover:border-white/20'
+                                                    }`}
+                                            >
+                                                {lvl}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="block text-sm text-gray-400 font-bold uppercase tracking-wider">Selecciona la Materia</label>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                                        {subjects
+                                            .filter(s => selectedLevelFilter === 'Todos' || s.level === selectedLevelFilter)
+                                            .map(s => (
+                                                <button
+                                                    key={s.id}
+                                                    type="button"
+                                                    onClick={() => setSelectedSubject(s.id)}
+                                                    className={`p-4 rounded-xl border-2 text-left transition-all ${selectedSubject === s.id
+                                                        ? 'bg-blue-600/10 border-blue-500 text-white shadow-lg shadow-blue-500/10'
+                                                        : 'bg-[#0f1113] border-white/5 text-gray-400 hover:bg-white/10 hover:border-white/20'
+                                                        }`}
+                                                >
+                                                    <div className="flex justify-between items-center">
+                                                        <div className="flex flex-col">
+                                                            <span className="font-bold text-sm">{s.name}</span>
+                                                            {selectedLevelFilter === 'Todos' && <span className="text-[10px] opacity-50 uppercase">{s.level}</span>}
+                                                        </div>
+                                                        {selectedSubject === s.id && <CheckCircle2 size={16} className="text-blue-400" />}
+                                                    </div>
+                                                </button>
+                                            ))
+                                        }
+                                    </div>
+                                    {subjects.filter(s => selectedLevelFilter === 'Todos' || s.level === selectedLevelFilter).length === 0 && (
+                                        <p className="text-center text-gray-500 py-8 text-sm italic">No hay materias disponibles para este nivel.</p>
+                                    )}
+                                </div>
+                                {/* HIDDEN INPUT FOR FORM VALIDATION - although handleCreateRequest checks the state */}
+                                <input type="hidden" value={selectedSubject} required />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>

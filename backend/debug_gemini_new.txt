@@ -1,0 +1,39 @@
+﻿Error connecting to Gemini: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+python : Exception 
+ignored in: 
+<function 
+AsyncClient.__del__ 
+at 
+0x0000018E3972B6A0>
+En línea: 1 
+Carácter: 1
++ python 
+test_gemini.py 2>&1 
+| Out-File -FilePath 
+debug_gemini_new.txt 
+ ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Excepti   
+ on ignor...00018    
+E3972B6A0>:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+Traceback (most 
+recent call last):
+  File "C:\Users\506c
+a\AppData\Roaming\Pyt
+hon\Python313\site-pa
+ckages\google\genai\c
+lient.py", line 128, 
+in __del__
+ImportError: 
+sys.meta_path is 
+None, Python is 
+likely shutting down

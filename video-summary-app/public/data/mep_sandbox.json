@@ -1,0 +1,353 @@
+{
+    "students": [
+        {
+            "id": "S1",
+            "name": "Andrés Madrigal",
+            "phone": "8888-1111",
+            "level": "Sétimo",
+            "subjects": [
+                "MAT_7",
+                "CIEN_7"
+            ],
+            "availability": [
+                "mon_08",
+                "mon_09"
+            ],
+            "revenue": 45000,
+            "term_id": "T1"
+        },
+        {
+            "id": "S2",
+            "name": "Beatriz Solano",
+            "phone": "8888-2222",
+            "level": "Bachillerato",
+            "subjects": [
+                "MAT_B",
+                "ESP_B"
+            ],
+            "availability": [
+                "mon_08",
+                "tue_10"
+            ],
+            "revenue": 55000,
+            "term_id": "T1"
+        },
+        {
+            "id": "S3",
+            "name": "Carlos Ruiz",
+            "phone": "8888-3333",
+            "level": "Octavo",
+            "subjects": [
+                "MAT_8",
+                "SOC_8"
+            ],
+            "availability": [
+                "mon_08",
+                "mon_09"
+            ],
+            "revenue": 35000,
+            "term_id": "T2"
+        },
+        {
+            "id": "S4",
+            "name": "Diana Pérez",
+            "phone": "8888-4444",
+            "level": "Sétimo",
+            "subjects": [
+                "MAT_7",
+                "ESP_7"
+            ],
+            "availability": [
+                "mon_08",
+                "mon_09"
+            ],
+            "revenue": 50000,
+            "term_id": "T1"
+        },
+        {
+            "id": "S5",
+            "name": "Esteban Vega",
+            "phone": "8888-5555",
+            "level": "Noveno",
+            "subjects": [
+                "MAT_9",
+                "CIEN_9"
+            ],
+            "availability": [
+                "tue_08",
+                "tue_09"
+            ],
+            "revenue": 40000,
+            "term_id": "T2"
+        },
+        {
+            "id": "S6",
+            "name": "Fabiola Ortiz",
+            "phone": "8888-6666",
+            "level": "Sétimo",
+            "subjects": [
+                "MAT_7"
+            ],
+            "availability": [
+                "mon_08",
+                "mon_09"
+            ],
+            "revenue": 45000,
+            "term_id": "T1"
+        },
+        {
+            "id": "S7",
+            "name": "Gabriel Soto",
+            "phone": "8888-7777",
+            "level": "Octavo",
+            "subjects": [
+                "ESP_8",
+                "SOC_8"
+            ],
+            "availability": [
+                "wed_08",
+                "wed_09"
+            ],
+            "revenue": 42000,
+            "term_id": "T2"
+        },
+        {
+            "id": "S8",
+            "name": "Hilda Rojas",
+            "phone": "8888-8888",
+            "level": "Noveno",
+            "subjects": [
+                "MAT_9",
+                "ING_9"
+            ],
+            "availability": [
+                "thu_17",
+                "thu_18"
+            ],
+            "revenue": 48000,
+            "term_id": "T1"
+        },
+        {
+            "id": "S9",
+            "name": "Isaac Méndez",
+            "phone": "8888-9999",
+            "level": "Sétimo",
+            "subjects": [
+                "CIEN_7",
+                "SOC_7"
+            ],
+            "availability": [
+                "wed_08",
+                "wed_09"
+            ],
+            "revenue": 38000,
+            "term_id": "T2"
+        },
+        {
+            "id": "S10",
+            "name": "Julia Vargas",
+            "phone": "8888-1010",
+            "level": "Bachillerato",
+            "subjects": [
+                "MAT_B",
+                "FIS_B"
+            ],
+            "availability": [
+                "fri_17",
+                "fri_18"
+            ],
+            "revenue": 60000,
+            "term_id": "T2"
+        },
+        {
+            "id": "S11",
+            "name": "Kevin Cruz",
+            "phone": "8888-1122",
+            "level": "Octavo",
+            "subjects": [
+                "MAT_8",
+                "CIEN_8"
+            ],
+            "availability": [
+                "mon_08",
+                "mon_09"
+            ],
+            "revenue": 45000,
+            "term_id": "T1"
+        },
+        {
+            "id": "S12",
+            "name": "Lucía Blanco",
+            "phone": "8888-3344",
+            "level": "Noveno",
+            "subjects": [
+                "ESP_9",
+                "SOC_9"
+            ],
+            "availability": [
+                "tue_17",
+                "tue_18"
+            ],
+            "revenue": 43000,
+            "term_id": "T2"
+        }
+    ],
+    "tutors": [
+        {
+            "id": "T1",
+            "name": "Prof. Mario",
+            "phone": "7777-1111",
+            "specialties": [
+                "MAT_7",
+                "MAT_8",
+                "MAT_9"
+            ],
+            "availability": [
+                "mon_08",
+                "mon_09",
+                "fri_17"
+            ],
+            "rate": 8000
+        },
+        {
+            "id": "T2",
+            "name": "Profa. Elena",
+            "phone": "7777-2222",
+            "specialties": [
+                "CIEN_7",
+                "CIEN_8",
+                "ESP_7"
+            ],
+            "availability": [
+                "mon_08",
+                "wed_08",
+                "tue_17"
+            ],
+            "rate": 7500
+        },
+        {
+            "id": "T3",
+            "name": "Prof. Roberto",
+            "phone": "7777-3333",
+            "specialties": [
+                "SOC_8",
+                "SOC_9",
+                "ESP_8"
+            ],
+            "availability": [
+                "mon_08",
+                "wed_08",
+                "wed_09"
+            ],
+            "rate": 7000
+        },
+        {
+            "id": "T4",
+            "name": "Profa. Carla",
+            "phone": "7777-4444",
+            "specialties": [
+                "ING_9",
+                "SOC_7"
+            ],
+            "availability": [
+                "thu_17",
+                "thu_18",
+                "wed_08"
+            ],
+            "rate": 8500
+        },
+        {
+            "id": "T5",
+            "name": "Prof. Luis",
+            "phone": "7777-5555",
+            "specialties": [
+                "FIS_B",
+                "MAT_B"
+            ],
+            "availability": [
+                "fri_17",
+                "fri_18",
+                "mon_08"
+            ],
+            "rate": 9000
+        }
+    ],
+    "subjects": [
+        {
+            "id": "MAT_7",
+            "name": "Matemáticas (Sétimo)"
+        },
+        {
+            "id": "MAT_8",
+            "name": "Matemáticas (Octavo)"
+        },
+        {
+            "id": "MAT_9",
+            "name": "Matemáticas (Noveno)"
+        },
+        {
+            "id": "MAT_B",
+            "name": "Matemáticas (Bacho)"
+        },
+        {
+            "id": "CIEN_7",
+            "name": "Ciencias (Sétimo)"
+        },
+        {
+            "id": "CIEN_8",
+            "name": "Ciencias (Octavo)"
+        },
+        {
+            "id": "CIEN_9",
+            "name": "Ciencias (Noveno)"
+        },
+        {
+            "id": "ESP_7",
+            "name": "Español (Sétimo)"
+        },
+        {
+            "id": "ESP_8",
+            "name": "Español (Octavo)"
+        },
+        {
+            "id": "ESP_9",
+            "name": "Español (Noveno)"
+        },
+        {
+            "id": "ESP_B",
+            "name": "Español (Bacho)"
+        },
+        {
+            "id": "SOC_7",
+            "name": "Sociales (Sétimo)"
+        },
+        {
+            "id": "SOC_8",
+            "name": "Sociales (Octavo)"
+        },
+        {
+            "id": "SOC_9",
+            "name": "Sociales (Noveno)"
+        },
+        {
+            "id": "ING_9",
+            "name": "Inglés (Noveno)"
+        },
+        {
+            "id": "FIS_B",
+            "name": "Física (Bacho)"
+        }
+    ],
+    "terms": [
+        {
+            "id": "T1",
+            "name": "Tanda Febrero 2026",
+            "deadline": "2026-01-25"
+        },
+        {
+            "id": "T2",
+            "name": "Tanda Marzo 2026",
+            "deadline": "2026-02-20"
+        }
+    ]
+}

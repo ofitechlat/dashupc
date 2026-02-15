@@ -1,0 +1,36 @@
+📊 RESULTADOS DE OPTIMIZACIÓN:
+
+👤 Ana: 8 slots asignados
+   - friday 15:00 -> Cálculo I (grupal) con Profe Carlos (Score: 1430.0)
+   - monday 15:00 -> Cálculo I (grupal) con Profe Carlos (Score: 1430.0)
+   - thursday 15:00 -> Cálculo I (grupal) con Profe Carlos (Score: 1430.0)
+   - thursday 17:00 -> Cálculo I (grupal) con Profe Carlos (Score: 1430.0)
+   - tuesday 15:00 -> Cálculo I (grupal) con Profe Carlos (Score: 1430.0)
+   - tuesday 17:00 -> Cálculo I (grupal) con Profe Carlos (Score: 1430.0)
+   - wednesday 15:00 -> Cálculo I (grupal) con Profe Carlos (Score: 1430.0)
+   - wednesday 17:00 -> Cálculo I (grupal) con Profe Carlos (Score: 1430.0)
+
+👤 Beto: 2 slots asignados
+   - monday 12:00 -> Estadística (individual) con Profe Carlos (Score: 920.0)
+   - wednesday 12:00 -> Estadística (individual) con Profe Carlos (Score: 920.0)
+
+👤 Carla: 10 slots asignados
+   - friday 19:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - friday 20:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - monday 19:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - monday 20:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - thursday 19:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - thursday 20:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - tuesday 19:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - tuesday 20:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - wednesday 19:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+   - wednesday 20:00 -> Álgebra Lineal (grupal) con Profe Carlos (Score: 1510.0)
+
+👤 Dany: 4 slots asignados
+   - monday 17:00 -> Cálculo I (grupal) con Profe Carlos (Score: 770.0)
+   - thursday 17:00 -> Cálculo I (grupal) con Profe Carlos (Score: 770.0)
+   - tuesday 17:00 -> Cálculo I (grupal) con Profe Carlos (Score: 770.0)
+   - wednesday 17:00 -> Cálculo I (grupal) con Profe Carlos (Score: 770.0)
+
+🤔 ANÁLISIS DE FALLOS:
+✅ Todos los estudiantes recibieron al menos 1 clase.

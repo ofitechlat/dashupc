@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.moveable-origin {
+    display: none !important;
+}
+.moveable-line.moveable-direction  {
+    display: none !important;
+}

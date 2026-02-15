@@ -1,0 +1,100 @@
+-------- AVAILABLE MODELS --------
+Name: models/gemini-2.5-flash
+Display Name: Gemini 2.5 Flash
+------------------------------
+Name: models/gemini-2.5-pro
+Display Name: Gemini 2.5 Pro
+------------------------------
+Name: models/gemini-2.0-flash-exp
+Display Name: Gemini 2.0 Flash Experimental
+------------------------------
+Name: models/gemini-2.0-flash
+Display Name: Gemini 2.0 Flash
+------------------------------
+Name: models/gemini-2.0-flash-001
+Display Name: Gemini 2.0 Flash 001
+------------------------------
+Name: models/gemini-2.0-flash-exp-image-generation
+Display Name: Gemini 2.0 Flash (Image Generation) Experimental
+------------------------------
+Name: models/gemini-2.0-flash-lite-001
+Display Name: Gemini 2.0 Flash-Lite 001
+------------------------------
+Name: models/gemini-2.0-flash-lite
+Display Name: Gemini 2.0 Flash-Lite
+------------------------------
+Name: models/gemini-2.0-flash-lite-preview-02-05
+Display Name: Gemini 2.0 Flash-Lite Preview 02-05
+------------------------------
+Name: models/gemini-2.0-flash-lite-preview
+Display Name: Gemini 2.0 Flash-Lite Preview
+------------------------------
+Name: models/gemini-exp-1206
+Display Name: Gemini Experimental 1206
+------------------------------
+Name: models/gemini-2.5-flash-preview-tts
+Display Name: Gemini 2.5 Flash Preview TTS
+------------------------------
+Name: models/gemini-2.5-pro-preview-tts
+Display Name: Gemini 2.5 Pro Preview TTS
+------------------------------
+Name: models/gemma-3-1b-it
+Display Name: Gemma 3 1B
+------------------------------
+Name: models/gemma-3-4b-it
+Display Name: Gemma 3 4B
+------------------------------
+Name: models/gemma-3-12b-it
+Display Name: Gemma 3 12B
+------------------------------
+Name: models/gemma-3-27b-it
+Display Name: Gemma 3 27B
+------------------------------
+Name: models/gemma-3n-e4b-it
+Display Name: Gemma 3n E4B
+------------------------------
+Name: models/gemma-3n-e2b-it
+Display Name: Gemma 3n E2B
+------------------------------
+Name: models/gemini-flash-latest
+Display Name: Gemini Flash Latest
+------------------------------
+Name: models/gemini-flash-lite-latest
+Display Name: Gemini Flash-Lite Latest
+------------------------------
+Name: models/gemini-pro-latest
+Display Name: Gemini Pro Latest
+------------------------------
+Name: models/gemini-2.5-flash-lite
+Display Name: Gemini 2.5 Flash-Lite
+------------------------------
+Name: models/gemini-2.5-flash-image
+Display Name: Nano Banana
+------------------------------
+Name: models/gemini-2.5-flash-preview-09-2025
+Display Name: Gemini 2.5 Flash Preview Sep 2025
+------------------------------
+Name: models/gemini-2.5-flash-lite-preview-09-2025
+Display Name: Gemini 2.5 Flash-Lite Preview Sep 2025
+------------------------------
+Name: models/gemini-3-pro-preview
+Display Name: Gemini 3 Pro Preview
+------------------------------
+Name: models/gemini-3-flash-preview
+Display Name: Gemini 3 Flash Preview
+------------------------------
+Name: models/gemini-3-pro-image-preview
+Display Name: Nano Banana Pro
+------------------------------
+Name: models/nano-banana-pro-preview
+Display Name: Nano Banana Pro
+------------------------------
+Name: models/gemini-robotics-er-1.5-preview
+Display Name: Gemini Robotics-ER 1.5 Preview
+------------------------------
+Name: models/gemini-2.5-computer-use-preview-10-2025
+Display Name: Gemini 2.5 Computer Use Preview 10-2025
+------------------------------
+Name: models/deep-research-pro-preview-12-2025
+Display Name: Deep Research Pro Preview (Dec-12-2025)
+------------------------------

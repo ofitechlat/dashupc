@@ -34,8 +34,15 @@ export default function AdminDashboard() {
     useEffect(() => {
         const checkSession = async () => {
             const { data: { session } } = await supabase.auth.getSession();
-            setIsAdmin(!!session);
-            if (session) {
+            const validAdmin = session?.user?.email === '506casm@gmail.com';
+
+            if (session && !validAdmin) {
+                router.push('/student/dashboard');
+                return;
+            }
+
+            setIsAdmin(validAdmin);
+            if (validAdmin) {
                 loadStats();
             }
             setLoading(false);
@@ -43,8 +50,9 @@ export default function AdminDashboard() {
         checkSession();
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setIsAdmin(!!session);
-            if (session) loadStats();
+            const validAdmin = session?.user?.email === '506casm@gmail.com';
+            setIsAdmin(validAdmin);
+            if (validAdmin) loadStats();
         });
 
         return () => subscription.unsubscribe();

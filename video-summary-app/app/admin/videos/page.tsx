@@ -41,7 +41,9 @@ export default function AdminVideosPage() {
     useEffect(() => {
         const checkSession = async () => {
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
+            const validAdmin = session?.user?.email === '506casm@gmail.com';
+
+            if (!validAdmin) {
                 router.push('/admin');
                 return;
             }
@@ -51,7 +53,7 @@ export default function AdminVideosPage() {
         checkSession();
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            if (!session) {
+            if (session?.user?.email !== '506casm@gmail.com') {
                 router.push('/admin');
             }
         });
@@ -539,8 +541,8 @@ export default function AdminVideosPage() {
 
                                         {/* Status */}
                                         <span className={`text-xs px-2 py-1 rounded-lg shrink-0 ${c.status === 'completed' ? 'bg-green-500/10 text-green-400' :
-                                                c.status === 'confirmed' ? 'bg-blue-500/10 text-blue-400' :
-                                                    'bg-yellow-500/10 text-yellow-400'
+                                            c.status === 'confirmed' ? 'bg-blue-500/10 text-blue-400' :
+                                                'bg-yellow-500/10 text-yellow-400'
                                             }`}>
                                             {c.status === 'completed' ? 'Completada' :
                                                 c.status === 'confirmed' ? 'Confirmada' : 'Agendada'}

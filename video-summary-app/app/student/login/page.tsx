@@ -25,6 +25,12 @@ export default function StudentLoginPage() {
 
             if (authError) throw authError;
 
+            // Admin redirect check
+            if (data.user?.email === '506casm@gmail.com') {
+                router.push('/admin');
+                return;
+            }
+
             if (data.user) {
                 // Check if user must change password
                 const { data: studentData, error: studentError } = await supabase

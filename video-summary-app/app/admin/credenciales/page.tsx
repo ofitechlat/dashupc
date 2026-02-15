@@ -36,7 +36,9 @@ export default function CredencialesPage() {
     useEffect(() => {
         const checkSession = async () => {
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
+            const validAdmin = session?.user?.email === '506casm@gmail.com';
+
+            if (!validAdmin) {
                 router.push('/admin');
                 return;
             }

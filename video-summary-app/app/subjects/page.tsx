@@ -12,7 +12,15 @@ export default function SubjectsPage() {
     const [subjects, setSubjects] = useState<Subject[]>([]);
 
     useEffect(() => {
-        loadSubjects();
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session?.user?.email !== '506casm@gmail.com') {
+                router.push('/student/dashboard');
+                return;
+            }
+            loadSubjects();
+        };
+        checkSession();
     }, []);
 
     const loadSubjects = async () => {

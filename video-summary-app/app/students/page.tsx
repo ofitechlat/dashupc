@@ -13,7 +13,15 @@ export default function StudentsPage() {
     const [subjects, setSubjects] = useState<Record<string, Subject>>({});
 
     useEffect(() => {
-        loadData();
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session?.user?.email !== '506casm@gmail.com') {
+                router.push('/student/dashboard');
+                return;
+            }
+            loadData();
+        };
+        checkSession();
     }, []);
 
     const loadData = async () => {

@@ -95,7 +95,7 @@ export default function WatchPage() {
         setIsClient(true);
         // Verificar Auth
         supabase.auth.getSession().then(({ data: { session } }) => {
-            setIsAdmin(!!session);
+            setIsAdmin(session?.user?.email === '506casm@gmail.com');
         });
 
         if (id && loadingRef.current !== id) {
@@ -246,7 +246,13 @@ export default function WatchPage() {
             <header className="bg-black/40 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex items-center justify-between shrink-0 z-10">
                 <div className="flex items-center gap-6">
                     <button
-                        onClick={() => router.push('/admin/videos')}
+                        onClick={() => {
+                            if (isAdmin) {
+                                router.push('/admin/videos');
+                            } else {
+                                router.push('/student/dashboard');
+                            }
+                        }}
                         className="p-2.5 hover:bg-white/5 rounded-2xl transition-all border border-transparent hover:border-white/5 group"
                     >
                         <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />

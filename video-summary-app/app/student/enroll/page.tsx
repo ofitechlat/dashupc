@@ -263,7 +263,7 @@ export default function EnrollmentByObjectives() {
                         <div className="space-y-4">
                             <label className="text-sm text-gray-400 uppercase tracking-widest font-bold">Nivel Académico</label>
                             <div className="flex flex-wrap gap-2">
-                                {['Sétimo', 'Octavo', 'Noveno', 'Bachillerato'].map(lvl => (
+                                {['Sétimo', 'Octavo', 'Noveno', 'Bachillerato', 'Universidad'].map(lvl => (
                                     <button
                                         key={lvl}
                                         onClick={() => { setSelectedLevel(lvl); setSelectedSubjectIds([]); }}

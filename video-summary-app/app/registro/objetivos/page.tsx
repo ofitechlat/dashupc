@@ -31,7 +31,7 @@ const BUNDLES = [
     }
 ];
 
-const LEVEL_FILTERS = ['Todos', 'Sétimo', 'Octavo', 'Noveno', 'Bachillerato', 'Universitario'];
+const LEVEL_FILTERS = ['Todos', 'Sétimo', 'Octavo', 'Noveno', 'Bachillerato', 'Universidad'];
 
 export default function RegistrationObjectivesPage() {
     const router = useRouter();
@@ -209,8 +209,8 @@ export default function RegistrationObjectivesPage() {
                                         key={level}
                                         onClick={() => setFilter(level)}
                                         className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${filter === level
-                                                ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/20'
-                                                : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                                            ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/20'
+                                            : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
                                             }`}
                                     >
                                         {level}

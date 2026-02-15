@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Users, Plus, Phone, Mail, BookOpen, DollarSign, Edit, Trash2 } from 'lucide-react';
+import { ArrowLeft, Users, Plus, Phone, Mail, BookOpen, DollarSign, Edit, Trash2, Calendar } from 'lucide-react';
 import { supabase } from '../utils/supabase';
 import { Tutor, Subject } from '../types/tutoring';
 
@@ -131,13 +131,21 @@ export default function TutorsPage() {
                                 <div className="space-y-2 text-sm text-gray-400">
                                     <p className="flex items-center gap-2"><Phone size={14} />{tutor.phone}</p>
                                     {tutor.email && <p className="flex items-center gap-2"><Mail size={14} />{tutor.email}</p>}
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                        <BookOpen size={14} />
-                                        {tutor.subjectIds.map(id => (
-                                            <span key={id} className="px-2 py-0.5 bg-orange-500/20 text-orange-400 rounded text-xs">
-                                                {subjects[id]?.name || 'Materia'}
-                                            </span>
-                                        ))}
+                                    <div className="flex items-center justify-between gap-2 flex-wrap">
+                                        <div className="flex items-center gap-2 flex-wrap">
+                                            <BookOpen size={14} />
+                                            {tutor.subjectIds.map(id => (
+                                                <span key={id} className="px-2 py-0.5 bg-orange-500/20 text-orange-400 rounded text-xs">
+                                                    {subjects[id]?.name || 'Materia'}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <button
+                                            onClick={() => router.push(`/tutors/${tutor.id}/schedule`)}
+                                            className="text-xs text-blue-400 hover:text-blue-300 font-bold flex items-center gap-1 bg-blue-500/10 px-3 py-1.5 rounded-lg transition-colors ml-auto"
+                                        >
+                                            <Calendar size={14} /> Ver Horario
+                                        </button>
                                     </div>
                                     <p>{tutor.availability.length} bloques de disponibilidad</p>
                                 </div>
